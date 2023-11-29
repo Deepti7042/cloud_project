@@ -3,25 +3,37 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 12
+      nodejs: 18
     commands:
-      - echo Installing source NPM dependencies...
+      - echo "Installing source NPM dependencies..."
       - npm install
+
   pre_build:
     commands:
-      - echo Pre-build stage...
+      - echo "Running tests..."
+      # Uncomment the line below to execute tests
+      # - npm test
+
   build:
     commands:
-      - echo Building the React application...
+      - echo "Building the React app..."
       - npm run build
+
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo "Copying build output and Procfile to the artifact directory..."
+      - mkdir -p /tmp/artifact
+      - cp -r build/* /tmp/artifact/
+      - cp package.json /tmp/artifact/
+      - cp Procfile /tmp/artifact/
+      - cp server.js /tmp/artifact/ # Only necessary if you created a server.js
+      - echo "Zipping the artifact..."
+      - cd /tmp/artifact
+      - zip -r my-react-app.zip .
+      - echo "Moving the artifact to the build directory..."
+      - mv my-react-app.zip $CODEBUILD_SRC_DIR
 
 artifacts:
   files:
     - '**/*'
-
-cache:
-  paths:
-    - 'node_modules/**/*'
+  discard-paths:no
