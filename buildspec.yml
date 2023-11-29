@@ -25,8 +25,8 @@ phases:
       - mkdir -p /tmp/artifact
       - cp -r build/* /tmp/artifact/
       - cp package.json /tmp/artifact/
-      - cp Procfile /tmp/artifact/
-      - cp server.js /tmp/artifact/ # Only necessary if you created a server.js
+      # - cp Procfile /tmp/artifact/
+      # - cp server.js /tmp/artifact/ # Only necessary if you created a server.js
       - echo "Zipping the artifact..."
       - cd /tmp/artifact
       - zip -r my-react-app.zip .
