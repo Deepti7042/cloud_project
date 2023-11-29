@@ -13,7 +13,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://kadjkvt9nl.execute-api.us-west-2.amazonaws.com/prod/create-user', {
+            const response = await axios.post('https://ceqxju5n1i.execute-api.us-east-1.amazonaws.com/prod/registerSNS', {
                 body: { userId, username, password, email, contact }
             });
             console.log(response.data);

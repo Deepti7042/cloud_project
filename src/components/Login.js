@@ -1,9 +1,12 @@
 // Login.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,6 +35,10 @@ function Login() {
     }
   };
 
+  const handleRegister = () => {
+    navigate('/register'); 
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
@@ -53,6 +60,7 @@ function Login() {
       </label>
       <br />
       <button type="submit">Login</button>
+      <button type="button" onClick={handleRegister}>Register</button>
     </form>
   );
 }
