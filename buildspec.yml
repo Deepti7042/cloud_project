@@ -21,18 +21,12 @@ phases:
 
   post_build:
     commands:
-      - echo "Copying build output and Procfile to the artifact directory..."
-      - mkdir -p /tmp/artifact
-      - cp -r build/* /tmp/artifact/
-      - cp package.json /tmp/artifact/
-      # - cp Procfile /tmp/artifact/
-      # - cp server.js /tmp/artifact/ # Only necessary if you created a server.js
-      - echo "Zipping the artifact..."
-      - cd /tmp/artifact
-      - zip -r my-react-app.zip .
-      - echo "Moving the artifact to the build directory..."
-      - mv my-react-app.zip $CODEBUILD_SRC_DIR
+      - echo "Zipping the application including node_modules..."
+      # This command zips all files and folders from the project root, including node_modules
+      - zip -r my-babu-app.zip . -x ".*" "*/*.log"
+      - echo "Artifact zip created."
 
 artifacts:
   files:
     - '**/*'
+  discard-paths: no
