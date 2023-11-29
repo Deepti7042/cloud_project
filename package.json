@@ -47,6 +47,9 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://7wqabd0gq1.execute-api.us-west-2.amazonaws.com"
+  "proxy": "https://7wqabd0gq1.execute-api.us-west-2.amazonaws.com",
+  "engines": {
+    "node": ">=16.0.0"
+  }
 
 }
