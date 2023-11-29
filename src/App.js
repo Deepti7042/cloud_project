@@ -6,6 +6,7 @@ import Home from './components/Home';
 const App = () => {
     // return <Routes />;
     return <Home/>
+    
 };
 
 export default App;
