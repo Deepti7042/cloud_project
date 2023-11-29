@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyApplication:
+    Type: AWS::ElasticBeanstalk::Application
+    Properties:
+      ApplicationName: cloud_project
+
+  MyApplicationEnvironment:
+    Type: AWS::ElasticBeanstalk::Environment
+    Properties:
+      ApplicationName: !Ref MyApplication
+      EnvironmentName: MyReactAppEnvironment
+      SolutionStackName: 64bit Amazon Linux 2 v3.1.1 running Node.js 12 # Update this to your preferred solution stack
+      OptionSettings:
+        - Namespace: aws:elasticbeanstalk:application:environment
+          OptionName: NODE_ENV
+          Value: production
